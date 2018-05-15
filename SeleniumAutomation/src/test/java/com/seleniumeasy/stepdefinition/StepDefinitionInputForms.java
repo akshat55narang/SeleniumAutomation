@@ -1,32 +1,41 @@
 package com.seleniumeasy.stepdefinition;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Set;
+
 import org.junit.Assert;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.Select;
 
 import com.seleniumeasy.injector.TestContext;
 import com.seleniumeasy.objectrepository.CheckBoxDemo;
 import com.seleniumeasy.objectrepository.HomePageInputForms;
 import com.seleniumeasy.objectrepository.RadioButtonDemo;
+import com.seleniumeasy.objectrepository.SelectDropdownList;
 
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
+import okhttp3.internal.connection.RouteSelector.Selection;
 
 public class StepDefinitionInputForms {
 	TestContext testContext;
 	private HomePageInputForms homePageInputForms;
 	private CheckBoxDemo checkBoxDemo;
 	private RadioButtonDemo radioButtonDemo;
+	private SelectDropdownList selectDropdownList;
 
 	public StepDefinitionInputForms(TestContext test) {
 		testContext = test;
 		homePageInputForms = testContext.getPageObjectManager().getHomePageInputForms();
 		checkBoxDemo = testContext.getPageObjectManager().getCheckBoxDemo();
 		radioButtonDemo = testContext.getPageObjectManager().getRadioButtonDemo();
+		selectDropdownList = testContext.getPageObjectManager().getSelectDropdownList();
 	}
 
 	@Given("^User opens application in browser$")
 	public void user_opens_application_in_browser() throws Throwable {
-
 	}
 
 	@When("^User clicks on Input Forms$")
@@ -42,7 +51,10 @@ public class StepDefinitionInputForms {
 			homePageInputForms.getCheckBoxDemoLink().click();
 		} else if (inputForm.equals("Radio Button") || inputForm.equals("Group Radio Button")) {
 			homePageInputForms.getRadioButtonemoLink().click();
+		} else if (inputForm.equals("Select Dropdown List") || inputForm.equals("Multi Select Dropdown List")) {
+			homePageInputForms.getSelectDropdownListLink().click();
 		}
+
 	}
 
 	@When("^Verifies \"([^\"]*)\"$")
@@ -70,6 +82,14 @@ public class StepDefinitionInputForms {
 			radioButtonDemo.getGroupMaleOptionRadioButton().click();
 			radioButtonDemo.getZeroToFiveAgeOptionRadioButton().click();
 			radioButtonDemo.getGroupCheckValuesButton().click();
+		} else if (inputForm.equals("Select Dropdown List")) {
+			Select selection = new Select(selectDropdownList.getSelectADaySelectDropDownList());
+			selection.selectByValue("Monday");
+		} else if (inputForm.equals("Multi Select Dropdown List")) {
+			Select selection = new Select(selectDropdownList.getMultiSelectStateSelectDropDownList());
+			selection.selectByValue("California");
+			selection.selectByValue("New Jersey");
+			selection.selectByValue("Washington");
 		}
 
 	}
@@ -84,10 +104,15 @@ public class StepDefinitionInputForms {
 			Assert.assertEquals("Success - Check box is checked", checkBoxDemo.getAgeSelectionMessage().getText());
 		} else if (inputForm.equals("Radio Button")) {
 			Assert.assertEquals("Radio button 'Male' is checked", radioButtonDemo.getCheckValueMessage().getText());
-		 }else if (inputForm.equals("Group Radio Button")) {
-			Assert.assertEquals("Sex : Male\n" + 
-					"Age group: 0 - 5", radioButtonDemo.getGroupCheckValuesMessage().getText());
-			 System.out.println("GroupCheck Message= "+radioButtonDemo.getGroupCheckValuesMessage().getText());
+		} else if (inputForm.equals("Group Radio Button")) {
+			Assert.assertEquals("Sex : Male\n" + "Age group: 0 - 5",
+					radioButtonDemo.getGroupCheckValuesMessage().getText());
+		} else if (inputForm.equals("Select Dropdown List")) {
+			Assert.assertEquals("Monday", selectDropdownList.getSelectADaySelectDropDownList().getAttribute("value"));
+		} else if (inputForm.equals("Multi Select Dropdown List")) {
+			Select S = new Select(selectDropdownList.getMultiSelectStateSelectDropDownList());
+			Assert.assertEquals(Integer.parseInt("3"), S.getAllSelectedOptions().size());
+
 		}
 	}
 
