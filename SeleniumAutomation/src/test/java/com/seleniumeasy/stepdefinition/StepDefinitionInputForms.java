@@ -69,7 +69,7 @@ public class StepDefinitionInputForms {
 		} else if (inputForm.equals("Group Radio Button")) {
 			radioButtonDemo.getGroupMaleOptionRadioButton().click();
 			radioButtonDemo.getZeroToFiveAgeOptionRadioButton().click();
-			radioButtonDemo.getGroupCheckValuesMessage().click();
+			radioButtonDemo.getGroupCheckValuesButton().click();
 		}
 
 	}
@@ -85,7 +85,8 @@ public class StepDefinitionInputForms {
 		} else if (inputForm.equals("Radio Button")) {
 			Assert.assertEquals("Radio button 'Male' is checked", radioButtonDemo.getCheckValueMessage().getText());
 		 }else if (inputForm.equals("Group Radio Button")) {
-			//Assert.assertEquals("Radio button 'Male' is checked", radioButtonDemo.getCheckValueMessage().getText());
+			Assert.assertEquals("Sex : Male\n" + 
+					"Age group: 0 - 5", radioButtonDemo.getGroupCheckValuesMessage().getText());
 			 System.out.println("GroupCheck Message= "+radioButtonDemo.getGroupCheckValuesMessage().getText());
 		}
 	}

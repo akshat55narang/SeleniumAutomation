@@ -20,7 +20,7 @@ public class StepDefinitionGeneric {
 	
 	@After
 	public void performPostScenarioExecutionActions() {
-		testContext.getWebDriverManager().closeBrowser();
+		//testContext.getWebDriverManager().closeBrowser();
 		System.out.println("+++++++++++++++ Ending Scenario ++++++++++++++++++++");
 	}
 

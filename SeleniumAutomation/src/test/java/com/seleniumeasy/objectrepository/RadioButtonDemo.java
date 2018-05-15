@@ -54,7 +54,7 @@ public class RadioButtonDemo {
 	@FindBy(xpath = "//button[text()='Get values']")
 	private WebElement buttonGetValues;
 
-	public WebElement getCheckValuesButton() {
+	public WebElement getGroupCheckValuesButton() {
 		return buttonGetValues;
 	}
 

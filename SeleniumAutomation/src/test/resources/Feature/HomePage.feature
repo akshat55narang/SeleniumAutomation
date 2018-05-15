@@ -10,10 +10,10 @@ Scenario Outline: Verify user is able to test all the basic input form features
     And Verifies "<Input Forms>"
     Then User should be able to execute all the test cases for the specified "<Input Forms>".
     Examples:
-    #|Group Radio Button|
-    #|Input Forms|
+    |Input Forms|
     #|Single Input|
     #|Two Input|
     #|Single Check Box|
     #|Multiple Check Box|
-   	|Radio Button|
+   	#|Radio Button|
+   	|Group Radio Button|
