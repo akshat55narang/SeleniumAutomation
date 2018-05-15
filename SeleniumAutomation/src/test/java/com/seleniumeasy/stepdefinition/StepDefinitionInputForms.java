@@ -66,6 +66,10 @@ public class StepDefinitionInputForms {
 		} else if (inputForm.equals("Radio Button")) {
 			radioButtonDemo.getMaleOptionRadioButton().click();
 			radioButtonDemo.getCheckValueButton().click();
+		} else if (inputForm.equals("Group Radio Button")) {
+			radioButtonDemo.getGroupMaleOptionRadioButton().click();
+			radioButtonDemo.getZeroToFiveAgeOptionRadioButton().click();
+			radioButtonDemo.getGroupCheckValuesMessage().click();
 		}
 
 	}
@@ -78,8 +82,11 @@ public class StepDefinitionInputForms {
 			Assert.assertEquals("11", homePageInputForms.getTotalCalculationMessage().getText());
 		} else if (inputForm.equals("Single Check Box")) {
 			Assert.assertEquals("Success - Check box is checked", checkBoxDemo.getAgeSelectionMessage().getText());
-		} else if(inputForm.equals("Radio Button")) {
+		} else if (inputForm.equals("Radio Button")) {
 			Assert.assertEquals("Radio button 'Male' is checked", radioButtonDemo.getCheckValueMessage().getText());
+		 }else if (inputForm.equals("Group Radio Button")) {
+			//Assert.assertEquals("Radio button 'Male' is checked", radioButtonDemo.getCheckValueMessage().getText());
+			 System.out.println("GroupCheck Message= "+radioButtonDemo.getGroupCheckValuesMessage().getText());
 		}
 	}
 

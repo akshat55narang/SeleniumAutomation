@@ -26,10 +26,42 @@ public class RadioButtonDemo {
 	public WebElement getCheckValueButton() {
 		return buttonGetCheckedValue;
 	}
+
 	@FindBy(xpath = "//p[@class='radiobutton']")
 	private WebElement messageCheckValue;
 
 	public WebElement getCheckValueMessage() {
 		return messageCheckValue;
+	}
+
+	/**
+	 * WebElement for the Group Radio Button Demo
+	 */
+	@FindBy(xpath = "(//div[@class='panel-body'])[3]/div/label/input[@value='Male']")
+	private WebElement groupRadioButtonMale;
+
+	public WebElement getGroupMaleOptionRadioButton() {
+		return groupRadioButtonMale;
+	}
+
+	@FindBy(xpath = "//input[@value='0 - 5']")
+	private WebElement groupRadioButtonAge;
+
+	public WebElement getZeroToFiveAgeOptionRadioButton() {
+		return groupRadioButtonAge;
+	}
+
+	@FindBy(xpath = "//button[text()='Get values']")
+	private WebElement buttonGetValues;
+
+	public WebElement getCheckValuesButton() {
+		return buttonGetValues;
+	}
+
+	@FindBy(xpath = "//p[@class='groupradiobutton']")
+	private WebElement messageCheckGroupValues;
+
+	public WebElement getGroupCheckValuesMessage() {
+		return messageCheckGroupValues;
 	}
 }
