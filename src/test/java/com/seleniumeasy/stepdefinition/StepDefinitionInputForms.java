@@ -9,8 +9,10 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
 
 import com.seleniumeasy.injector.TestContext;
+import com.seleniumeasy.objectrepository.AjaxFormSubmit;
 import com.seleniumeasy.objectrepository.CheckBoxDemo;
 import com.seleniumeasy.objectrepository.HomePageInputForms;
+import com.seleniumeasy.objectrepository.JquerySelectDropDown;
 import com.seleniumeasy.objectrepository.RadioButtonDemo;
 import com.seleniumeasy.objectrepository.SelectDropdownList;
 
@@ -25,6 +27,8 @@ public class StepDefinitionInputForms {
 	private CheckBoxDemo checkBoxDemo;
 	private RadioButtonDemo radioButtonDemo;
 	private SelectDropdownList selectDropdownList;
+	private AjaxFormSubmit ajaxFormSubmit;
+	private JquerySelectDropDown jquerySelectDropDown;
 
 	public StepDefinitionInputForms(TestContext test) {
 		testContext = test;
@@ -32,6 +36,8 @@ public class StepDefinitionInputForms {
 		checkBoxDemo = testContext.getPageObjectManager().getCheckBoxDemo();
 		radioButtonDemo = testContext.getPageObjectManager().getRadioButtonDemo();
 		selectDropdownList = testContext.getPageObjectManager().getSelectDropdownList();
+		ajaxFormSubmit = testContext.getPageObjectManager().getAjaxFormSubmit();
+		jquerySelectDropDown = testContext.getPageObjectManager().getJquerySelectDropDown();
 	}
 
 	@Given("^User opens application in browser$")
@@ -53,6 +59,10 @@ public class StepDefinitionInputForms {
 			homePageInputForms.getRadioButtonemoLink().click();
 		} else if (inputForm.equals("Select Dropdown List") || inputForm.equals("Multi Select Dropdown List")) {
 			homePageInputForms.getSelectDropdownListLink().click();
+		} else if(inputForm.equals("Ajax Form Submit")) {
+			homePageInputForms.getAjaxFormSubmitButton().click();
+		} else if(inputForm.equals("JQuery Select dropdown")) {
+			homePageInputForms.getJQuerySelectDropdown().click();
 		}
 
 	}
@@ -90,6 +100,19 @@ public class StepDefinitionInputForms {
 			selection.selectByValue("California");
 			selection.selectByValue("New Jersey");
 			selection.selectByValue("Washington");
+		} else if(inputForm.equals("Ajax Form Submit")) {
+			ajaxFormSubmit.getNameInput().sendKeys("Akshat");
+			ajaxFormSubmit.getCommentsTextArea().sendKeys("Testers Rock");
+			ajaxFormSubmit.getSubmitButton().click();
+			testContext.getWebDriverManager().getExplicitWait(ajaxFormSubmit.getFormSubmissionMessage(), "visibility");
+		} else if(inputForm.equals("JQuery Select dropdown")) {
+			jquerySelectDropDown.getSelectCountryDropDown().click();
+			int sizeBefore = jquerySelectDropDown.getCountryList().size();
+			System.out.println("Original Size = "+ sizeBefore );
+			jquerySelectDropDown.getSearchCountryInput().sendKeys("In");
+			Thread.sleep(5000);
+			int sizeAfter = jquerySelectDropDown.getCountryList().size();
+			System.out.println("Sorted Size = "+ sizeAfter );
 		}
 
 	}
@@ -112,7 +135,8 @@ public class StepDefinitionInputForms {
 		} else if (inputForm.equals("Multi Select Dropdown List")) {
 			Select S = new Select(selectDropdownList.getMultiSelectStateSelectDropDownList());
 			Assert.assertEquals(Integer.parseInt("3"), S.getAllSelectedOptions().size());
-
+		} else if (inputForm.equals("Ajax Form Submit")) {
+			Assert.assertEquals("Form submited Successfully!", ajaxFormSubmit.getFormSubmissionMessage().getText());
 		}
 	}
 

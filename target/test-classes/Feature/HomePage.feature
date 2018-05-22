@@ -11,11 +11,13 @@ Scenario Outline: Verify user is able to test all the basic input form features
     Then User should be able to execute all the test cases for the specified "<Input Forms>".
     Examples:
     |Input Forms|
-    |Single Input|
-   	|Two Input|
-    |Single Check Box|
-    |Multiple Check Box|
-   	|Radio Button|
-   	|Group Radio Button|
-   	|Select Dropdown List|
-   	|Multi Select Dropdown List|
+  #  |Single Input|
+   	#|Two Input|
+    #|Single Check Box|
+    #|Multiple Check Box|
+   	#|Radio Button|
+   	#|Group Radio Button|
+   	#|Select Dropdown List|
+   #	|Multi Select Dropdown List|
+   	#|Ajax Form Submit|
+   	|JQuery Select dropdown|

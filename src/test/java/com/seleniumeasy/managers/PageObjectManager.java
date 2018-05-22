@@ -1,7 +1,9 @@
 package com.seleniumeasy.managers;
 
+import com.seleniumeasy.objectrepository.AjaxFormSubmit;
 import com.seleniumeasy.objectrepository.CheckBoxDemo;
 import com.seleniumeasy.objectrepository.HomePageInputForms;
+import com.seleniumeasy.objectrepository.JquerySelectDropDown;
 import com.seleniumeasy.objectrepository.RadioButtonDemo;
 import com.seleniumeasy.objectrepository.SelectDropdownList;
 
@@ -12,6 +14,8 @@ public class PageObjectManager {
 	private CheckBoxDemo checkBoxDemo;
 	private RadioButtonDemo radioButtonDemo;
 	private SelectDropdownList selectDropdownList;
+	private AjaxFormSubmit ajaxFormSubmit;
+	private JquerySelectDropDown jquerySelectDropDown;
 	private WebDriver driver;
 
 	public PageObjectManager(WebDriver driver) {
@@ -29,7 +33,16 @@ public class PageObjectManager {
 	public RadioButtonDemo getRadioButtonDemo() {
 		return (radioButtonDemo == null) ? radioButtonDemo = new RadioButtonDemo(driver) : radioButtonDemo;
 	}
+
 	public SelectDropdownList getSelectDropdownList() {
 		return (selectDropdownList == null) ? selectDropdownList = new SelectDropdownList(driver) : selectDropdownList;
+	}
+
+	public AjaxFormSubmit getAjaxFormSubmit() {
+		return (ajaxFormSubmit == null) ? ajaxFormSubmit = new AjaxFormSubmit(driver) : ajaxFormSubmit;
+	}
+
+	public JquerySelectDropDown getJquerySelectDropDown() {
+		return (jquerySelectDropDown == null) ? jquerySelectDropDown = new JquerySelectDropDown(driver) : jquerySelectDropDown;
 	}
 }

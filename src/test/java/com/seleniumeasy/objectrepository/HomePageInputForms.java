@@ -48,6 +48,20 @@ public class HomePageInputForms {
 		return linkSelectDropDownList;
 	}
 
+	@FindBy(linkText = "Ajax Form Submit")
+	private WebElement linkAjaxFormSubmit;
+
+	public WebElement getAjaxFormSubmitButton() {
+		return linkAjaxFormSubmit;
+	}
+
+	@FindBy(linkText = "JQuery Select dropdown")
+	private WebElement linkJquerySelectDropdown;
+
+	public WebElement getJQuerySelectDropdown() {
+		return linkJquerySelectDropdown;
+	}
+
 	@FindBy(id = "user-message")
 	private WebElement inputUserMessage;
 
